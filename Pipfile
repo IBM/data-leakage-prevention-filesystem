@@ -14,6 +14,8 @@ sampleproject = {editable = true, path = "."}
 pytest-watch = "*"
 notebook = "*"
 pandas = "*"
+flake8 = "*"
+mypy = "*"
 
 [requires]
 python_version = "3.8"
