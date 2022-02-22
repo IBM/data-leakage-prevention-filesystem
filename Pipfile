@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fusepy = "*"
+diffprivlib = "*"
+
+[dev-packages]
+pipenv-setup = "*"
+pytest = "*"
+sampleproject = {editable = true, path = "."}
+pytest-watch = "*"
+notebook = "*"
+pandas = "*"
+
+[requires]
+python_version = "3.8"
