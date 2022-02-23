@@ -10,12 +10,13 @@ diffprivlib = "*"
 [dev-packages]
 pipenv-setup = "*"
 pytest = "*"
-sampleproject = {editable = true, path = "."}
+dlpfs = {editable = true, path = "."}
 pytest-watch = "*"
 notebook = "*"
 pandas = "*"
 flake8 = "*"
 mypy = "*"
+faker = "*"
 
 [requires]
 python_version = "3.8"

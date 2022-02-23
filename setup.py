@@ -1,10 +1,3 @@
-"""A setuptools based setup module.
-See:
-https://packaging.python.org/guides/distributing-packages-using-setuptools/
-https://github.com/pypa/sampleproject
-Modified by Madoshakalaka@Github (dependency links added)
-"""
-
 from setuptools import setup, find_packages
 from os import path
 
@@ -30,7 +23,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3.8",
     ],
-    packages=find_packages(exclude=["contrib", "docs", "tests"]),
+    packages=find_packages(exclude=["contrib", "docs", "tests", "scripts", "build"]),
     python_requires=">=3.0",
     install_requires=[
         "fusepy",
