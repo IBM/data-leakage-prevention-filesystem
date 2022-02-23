@@ -6,13 +6,13 @@ import logging
 
 import re
 
-try:
-    import re2
-except ImportError:
-    import re as re2
+# try:
+import re2
+# except ImportError:
+#     import re as re2
 
 
-def compile_rules(ruleSpecs, use_google_re2: bool):
+def compile_policies(ruleSpecs, use_google_re2: bool):
     logging.info(f'Loading specs from {ruleSpecs}')
     return [
         {
@@ -46,7 +46,7 @@ class LookUpMatcher():
 
 
 class LookUp():
-    def __init__(self, terms):
+    def __init__(self, terms: List[str]):
         self.terms = _build_terms(terms)
 
     def finditer(self, text: str) -> Iterator[LookUpMatcher]:
@@ -65,7 +65,7 @@ class LookUp():
         return text
 
 
-def build_rule(rule_spec: Dict[str, Any], use_google_re2: bool):
+def build_rule(rule_spec: Dict[str, Any], use_google_re2: bool = True):
     t = rule_spec['type']
     spec = rule_spec['spec']
 
@@ -83,4 +83,4 @@ def build_rule(rule_spec: Dict[str, Any], use_google_re2: bool):
         else:
             return re.compile(_build_regex(spec))
 
-    raise Exception(f'Unknown pattern type {t}')
+    raise ValueError(f'Unknown pattern type {t}')
