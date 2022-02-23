@@ -1,0 +1,17 @@
+{
+  "rules": [
+    {
+      "pattern": [
+        {
+          "type": "re",
+          "spec": "[DJ][15][01235]\\.[012389]"
+        }
+      ],
+      "transformation": {
+        "type": "redact"
+      }
+    }
+  ],
+  "do_read": true,
+  "do_write": true
+}

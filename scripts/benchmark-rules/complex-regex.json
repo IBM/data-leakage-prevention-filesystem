@@ -1,0 +1,17 @@
+{
+  "rules": [
+    {
+      "pattern": [
+        {
+          "type": "re",
+          "spec": "(\\w|\\.)+@(\\w|\\.)+\\.\\w{2,4}"
+        }
+      ],
+      "transformation": {
+        "type": "redact"
+      }
+    }
+  ],
+  "do_read": true,
+  "do_write": true
+}

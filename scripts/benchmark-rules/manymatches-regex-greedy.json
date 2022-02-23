@@ -1,0 +1,17 @@
+{
+  "rules": [
+    {
+      "pattern": [
+        {
+          "type": "re",
+          "spec": "FrequentKeyword+"
+        }
+      ],
+      "transformation": {
+        "type": "redact"
+      }
+    }
+  ],
+  "do_read": true,
+  "do_write": true
+}
