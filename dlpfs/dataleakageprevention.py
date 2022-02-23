@@ -9,7 +9,7 @@ import logging
 
 from .loopback import Loopback
 from .detection import compile_transformation
-from .formats import FormatProcessor, format_detector, format_detector
+from .formats import FormatProcessor, format_detector
 
 
 class FD:
