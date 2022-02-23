@@ -1,12 +1,8 @@
 import os
 from pathlib import Path
-from pytest import fail
+import pytest
 
 from dlpfs import Loopback
-
-
-def test_end_to_end():
-    fail("Not implemented yet")
 
 
 def test_initialization(tmp_path):
@@ -17,10 +13,35 @@ def test_initialization(tmp_path):
 
 
 def test_file_write(tmp_path):
-    root = root = os.path.join(Path(tmp_path), 'test-data')
+    root = Path(os.path.join(Path(tmp_path), 'test-data'))
 
-    print(root)
+    os.mkdir(root)
 
-    fs = Loopback(root=root)
+    fs = Loopback(root=str(root.absolute))
 
-    fs.write("foo")
+    data = "THIS IS SOME DATA".encode('utf-8')
+
+    fh = fs.open("foo", os.O_CREAT | os.O_WRONLY)
+
+    written_bytes = fs.write("foo", data, 0, fh)
+
+    fs.release("foo", fh)
+
+    assert written_bytes
+    assert len(data) == written_bytes
+    assert Path(root, "foo").exists
+
+
+@pytest.mark.skip("To be fixed")
+def test_read_file():
+    root = Path(Path(__file__).parent, "test-data")
+
+    fs = Loopback(root=str(root.absolute))
+
+    fh = fs.open("plain-text.txt", os.O_RDONLY)
+
+    content = fs.read("plain-text.txt", 8 ** 1024, 0, fh)
+
+    fs.release("plain-text.txt", fh)
+
+    assert len(content)
