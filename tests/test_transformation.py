@@ -5,7 +5,7 @@ from datetime import datetime
 import random
 
 import pytest
-
+    
 
 def test_redact():
     transformation = compile_transformation({"type": "redact"})

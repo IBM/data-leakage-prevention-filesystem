@@ -1,5 +1,4 @@
 from errno import EBADF
-from os.path import realpath
 
 from fuse import FuseOSError
 
@@ -8,8 +7,9 @@ import os
 
 import logging
 
+from dlpfs.transformation import compile_transformation
+
 from .loopback import Loopback
-from .detection import compile_rules
 from .formats import FormatProcessor, format_detector
 
 
@@ -24,12 +24,12 @@ class FD:
         self.offset = 0
 
 
-class PrivacyPreservingFileSystem(Loopback):
+class DataLeakagePreventionFileSystem(Loopback):
     def __init__(self, root, ruleSpecs, use_google_re2=False, guard_size=0, use_sub=False):
         super().__init__(root)
         with open(ruleSpecs) as infile:
             config = json.load(infile)
-        self.rules = compile_rules(config, use_google_re2)
+        self.rules = compile_transformation(config, use_google_re2)
         self.protect_read = config.get('do_read', True)
         self.protect_write = config.get('do_write', True)
         self.open_files = {}
@@ -111,11 +111,10 @@ class PrivacyPreservingFileSystem(Loopback):
         for spec in self.rules:
             logging.info(f'Applying {spec}')
             transformation = spec['transformation']
-            replacement = lambda m: transformation(m.group(0))
             for rule in spec['rules']:
                 matched = False
                 if self.use_sub:
-                    text2 = rule.sub(replacement, text)
+                    text2 = rule.sub(lambda m: transformation(m.group(0)), text)
                     matched = text == text2
                     text = text2
                 else:
