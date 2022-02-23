@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 fusepy = "*"
 diffprivlib = "*"
+re2 = "*"
 
 [dev-packages]
 pipenv-setup = "*"
