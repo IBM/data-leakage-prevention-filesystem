@@ -9,7 +9,7 @@ def _build_mechanism(transformation: Dict):
         mech = Laplace(
             epsilon=transformation.get('e', 0.1),
             delta=transformation.get('d', 0.0),
-            sensitivity=1
+            sensitivity=transformation.get('sensitivity', 1.0)
         )
 
         return lambda s: str(mech.randomise(float(s)))
@@ -31,7 +31,8 @@ def _build_mechanism(transformation: Dict):
         mech = Exponential(
             epsilon=transformation.get('e', 0.1),
             sensitivity=transformation.get('sensitivy', 1),
-            candidates=transformation.get('candidates', None)
+            candidates=transformation.get('candidates', None),
+            utility=transformation.get('utility')
         )
         return lambda s: mech.randomise(s)
 
