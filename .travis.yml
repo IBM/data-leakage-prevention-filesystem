@@ -2,10 +2,6 @@ language: python
 sudo: true
 dist: xenial
 
-before_install:
-  - sudo apt-get update
-  - sudo apt-get -y install re2
-
 install:
   - pip install pybind
   - pip install .
