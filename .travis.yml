@@ -7,7 +7,6 @@ python:
   - 3.9
 
 install:
-  - pip install pybind
   - pip install .
   - pip install flake8 mypy
 
