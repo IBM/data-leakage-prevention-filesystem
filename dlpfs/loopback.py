@@ -15,7 +15,7 @@ class Loopback(LoggingMixIn, Operations):
 
     def __call__(self, op, path, *args):
         logging.info('calling {} on {}'.format(op, path))
-        return super(Loopback, self).__call__(op, os.join(self.root, path), *args)
+        return super(Loopback, self).__call__(op, os.path.join(self.root, path), *args)
 
     def access(self, path, mode):
         if not os.access(path, mode):
