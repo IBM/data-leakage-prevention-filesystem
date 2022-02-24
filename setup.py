@@ -26,11 +26,18 @@ setup(
     packages=find_packages(exclude=["contrib", "docs", "tests", "scripts", "build"]),
     python_requires=">=3.0",
     install_requires=[
-        "fusepy",
-        "diffprivlib"
+        "diffprivlib==0.5.1",
+        "fusepy==3.0.1",
+        "joblib==1.1.0; python_version >= '3.6'",
+        "numpy==1.22.2; python_version >= '3.8'",
+        "pyre2==0.3.6",
+        "scikit-learn==1.0.2; python_version >= '3.7'",
+        "scipy==1.8.0; python_version < '3.11' and python_version >= '3.8'",
+        "setuptools==60.9.3; python_version >= '3.7'",
+        "threadpoolctl==3.1.0; python_version >= '3.6'",
     ],  # Optional
     project_urls={  # Optional
         "Bug Reports": "https://github.com/IBM/data-leakage-prevention-file-system/issues",
-        "Source": "https://github.com/IBM/data-leakage-prevention-file-system"
+        "Source": "https://github.com/IBM/data-leakage-prevention-file-system",
     },
 )
