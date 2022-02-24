@@ -2,6 +2,10 @@ language: python
 sudo: true
 dist: xenial
 
+python:
+  - 3.8
+  - 3.9
+
 install:
   - pip install pybind
   - pip install .
