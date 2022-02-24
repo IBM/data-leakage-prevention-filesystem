@@ -14,4 +14,4 @@ install:
 script:
   - pytest
   - flake8
-  - mypy
+  - mypy dlpfs tests
