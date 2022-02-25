@@ -12,10 +12,13 @@ class Loopback(LoggingMixIn, Operations):
     def __init__(self, root):
         self.root = realpath(root)
         self.rwlock = Lock()
+        logging.info(f'Initialized with {root}')
 
     def __call__(self, op, path, *args):
-        logging.info('calling {} on {}'.format(op, path))
-        return super(Loopback, self).__call__(op, os.path.join(self.root, path), *args)
+        logging.info('Calling {} on {}'.format(op, path))
+        real_path = os.path.join(self.root, path)
+        logging.info(f"Converted {path} -> {real_path}")
+        return super(Loopback, self).__call__(op, realpath, *args)
 
     def access(self, path, mode):
         if not os.access(path, mode):
