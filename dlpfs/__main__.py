@@ -38,4 +38,3 @@ if __name__ == '__main__':
     fs = create_fs(args)
 
     fuse = FUSE(fs, args.m, foreground=True)
-    
