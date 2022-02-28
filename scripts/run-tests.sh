@@ -3,9 +3,13 @@
 MODULE_NAME=dlpfs
 SLEEP_TIME=5
 
+mkdir results
+rm *.log
+rm -r results/*
+
 echo "BENCHMARK FOR LOOPBACK"
 
-python3 -m $MODULE_NAME -r input -m output -t loopback -l ERROR -sub -re2 &
+python -m $MODULE_NAME -r input -m output -t loopback -l ERROR -sub -re2 > loopback.log 2>&1 &
 
 sleep $SLEEP_TIME
 
@@ -32,13 +36,15 @@ echo "STOPPING LOOPBACK"
 
 ps aux | grep $MODULE_NAME | grep -v grep | awk '{print $2}' | xargs kill -SIGINT
 
+exit
+
 for rule in $(ls -1 ./benchmark-rules); do
 
     for guard_size in 2 4 8 16 32 64 128 256; do
 
         echo "BENCHMARK FOR $MODULE_NAME $rule $guard_size"
 
-        python3 -m $MODULE_NAME -r input -m output -t $MODULE_NAME -s benchmark-rules/$rule -l ERROR -sub -re2 -g $guard_size &
+        python -m $MODULE_NAME -r input -m output -t $MODULE_NAME -s benchmark-rules/$rule -l ERROR -sub -re2 -g $guard_size &
 
         sleep $SLEEP_TIME
 
