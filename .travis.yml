@@ -7,9 +7,8 @@ python:
   - 3.9
 
 install:
+  - pip install -r ./requirements-dev.txt
   - pip install .
-  - pip install flake8 mypy
-
 
 script:
   - pytest
