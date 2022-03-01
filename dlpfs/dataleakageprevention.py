@@ -8,7 +8,7 @@ import os
 import logging
 
 from .loopback import Loopback
-from .detection import compile_transformation
+from .detection import compile_policies
 from .formats import FormatProcessor, format_detector
 
 
@@ -24,22 +24,23 @@ class FD:
 
 
 class DataLeakagePreventionFileSystem(Loopback):
-    def __init__(self, root, ruleSpecs, use_google_re2=False, guard_size=0, use_sub=False):
+    def __init__(self, root, rule_specs, use_re2=False, guard_size=0, use_sub=False):
         super().__init__(root)
-        with open(ruleSpecs) as infile:
-            config = json.load(infile)
-        self.rules = compile_transformation(config, use_google_re2)
-        self.protect_read = config.get('do_read', True)
-        self.protect_write = config.get('do_write', True)
         self.open_files = {}
-        self.use_google_re2 = use_google_re2
+        self.use_re2 = use_re2
         self.guard_size = guard_size
         self.use_sub = use_sub
+
+        with open(rule_specs) as infile:
+            config = json.load(infile)
+        self.rules = compile_policies(config, self.use_re2)
+        self.protect_read = config.get('do_read', True)
+        self.protect_write = config.get('do_write', True)
 
     def open(self, path, flags):
         logging.info('Opening file {} as {}'.format(path, flags))
         fd = os.open(path, flags)
-        self.open_files[fd] = FD(fd, format_detector(path, flags, self.use_google_re2))
+        self.open_files[fd] = FD(fd, format_detector(path, flags, self.use_re2))
         return fd
 
     def flush(self, path, fh):
