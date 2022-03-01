@@ -1,0 +1,17 @@
+{
+    "rules": [
+        {
+            "pattern": [
+                {
+                  "type": "re",
+                  "spec": "FOOBAR"
+                }
+              ],
+              "transformation": {
+                "type": "redact"
+              }
+        }
+    ],
+    "do_read": true,
+    "do_write": false
+}

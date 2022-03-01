@@ -12,11 +12,11 @@ import re2
 #     import re as re2
 
 
-def compile_policies(ruleSpecs, use_google_re2: bool):
+def compile_policies(ruleSpecs, use_re2: bool):
     logging.info(f'Loading specs from {ruleSpecs}')
     return [
         {
-            'rules': [build_rule(r, use_google_re2) for r in rule['pattern']],
+            'rules': [build_rule(r, use_re2) for r in rule['pattern']],
             'transformation': compile_transformation(rule['transformation'])
         } for rule in ruleSpecs['rules']
     ]
@@ -65,12 +65,12 @@ class LookUp():
         return text
 
 
-def build_rule(rule_spec: Dict[str, Any], use_google_re2: bool = True):
+def build_rule(rule_spec: Dict[str, Any], use_re2: bool = True):
     t = rule_spec['type']
     spec = rule_spec['spec']
 
     if t == 're' or t == 're2':
-        if use_google_re2:
+        if use_re2:
             return re2.compile(spec)
         else:
             return re.compile(spec)
@@ -78,7 +78,7 @@ def build_rule(rule_spec: Dict[str, Any], use_google_re2: bool = True):
     if t == 'lookup':
         return LookUp(spec)
     if t == 'lookup2':
-        if use_google_re2:
+        if use_re2:
             return re2.compile(_build_regex(spec))
         else:
             return re.compile(_build_regex(spec))
