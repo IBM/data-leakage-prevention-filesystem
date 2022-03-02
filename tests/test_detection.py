@@ -3,7 +3,7 @@ from dlpfs.detection import build_rule
 
 
 def test_regex_python():
-    matcher = build_rule({"type": "re", "spec": "FOO"}, use_google_re2=False)
+    matcher = build_rule({"type": "re", "spec": "FOO"}, use_re2=False)
 
     match = [m.group() for m in matcher.finditer("THIS IS SOMETHING IN WHICH FOO IS CONTAINED")]
 
@@ -13,7 +13,7 @@ def test_regex_python():
 
 
 def test_regex_re2():
-    matcher = build_rule({"type": "re", "spec": "FOO"}, use_google_re2=True)
+    matcher = build_rule({"type": "re", "spec": "FOO"}, use_re2=True)
 
     match = [m.group() for m in matcher.finditer("THIS IS SOMETHING IN WHICH FOO IS CONTAINED")]
 
@@ -55,7 +55,7 @@ def test_lookup_converted_python():
 
 
 def test_lookup_converted_re2():
-    matcher = build_rule({"type": "lookup", "spec": ["FOO", "BAR"]}, use_google_re2=True)
+    matcher = build_rule({"type": "lookup", "spec": ["FOO", "BAR"]}, use_re2=True)
 
     match = [m.group() for m in matcher.finditer("THIS IS SOMETHING IN WHICH FOO IS CONTAINED")]
 
