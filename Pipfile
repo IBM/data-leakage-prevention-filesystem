@@ -7,7 +7,6 @@ name = "pypi"
 fusepy = "*"
 diffprivlib = "*"
 pyre2 = "*"
-dlpfs = {editable = true, path = "."}
 
 [dev-packages]
 pipenv-setup = "*"
