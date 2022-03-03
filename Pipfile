@@ -18,6 +18,8 @@ pandas = "*"
 flake8 = "*"
 mypy = "*"
 faker = "*"
+pycodestyle = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.8"

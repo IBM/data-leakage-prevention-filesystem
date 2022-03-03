@@ -1,16 +1,25 @@
 language: python
-sudo: true
 dist: xenial
 
 python:
   - 3.8
   - 3.9
+  - 3.10.0
 
 install:
   - pip install -r ./requirements-dev.txt
   - pip install .
 
 script:
-  - pytest
   - flake8
   - mypy dlpfs tests
+  - pycodestyle --max-line-length=120 dlpfs
+  - pytest
+
+matrix:
+  include:
+  - python: 3.9
+    script:
+    - pycodestyle --max-line-length=120 dlpfs
+    - pytest --cov-report=xml --cov=dlpfs --cov-append
+
