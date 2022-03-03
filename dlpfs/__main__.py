@@ -15,7 +15,7 @@ def create_fs(args):
     if t == 'ppfs':
         print("Creating ppfs FS")
         logging.info(f'Protecting {realpath(args.r)} with DataLeakagePreventionFileSystem')
-        return DataLeakagePreventionFileSystem(args.r, args.s, use_google_re2=args.re2, guard_size=args.g, use_sub=args.sub)
+        return DataLeakagePreventionFileSystem(args.r, args.s, use_re2=args.re2, guard_size=args.g, use_sub=args.sub)
 
     raise Exception()
 
