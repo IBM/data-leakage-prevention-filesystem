@@ -3,3 +3,4 @@ mypy==0.931
 notebook==6.4.8
 pandas==1.4.1
 git+https://github.com/marcosimioni/faker
+pytest-cov
