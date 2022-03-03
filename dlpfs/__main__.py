@@ -27,7 +27,8 @@ if __name__ == '__main__':
     parser.add_argument('-m', type=str, help='mountpoint', required=True)
     parser.add_argument('-s', type=str, help='protection specs (required for ppfs only)')
     parser.add_argument('-re2', action='store_true', help='use google-re2 instead of re')
-    parser.add_argument('-sub', action='store_true', help='use sub instead of finditer for regular expression validation')
+    parser.add_argument('-sub', action='store_true',
+                        help='use sub instead of finditer for regular expression validation')
     parser.add_argument('-g', type=int, help='guard size in bytes (required for ppfs only)', default=256)
     parser.add_argument('-l', type=str, help='accepted values: CRITICAL,ERROR,WARNING,INFO,DEBUG', default='ERROR')
 

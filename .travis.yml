@@ -13,13 +13,13 @@ install:
 script:
   - flake8
   - mypy dlpfs tests
-  - pycodestyle --max-line-length=120 dlpfs
   - pytest
 
 matrix:
   include:
   - python: 3.9
     script:
-    - pycodestyle --max-line-length=120 dlpfs
+    - flake8
+    - mypy dlpfs tests
     - pytest --cov-report=xml --cov=dlpfs --cov-append
 

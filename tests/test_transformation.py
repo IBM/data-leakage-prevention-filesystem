@@ -50,7 +50,12 @@ def test_dp_laplace():
 
 
 def test_dp_binary():
-    binary_transformation = compile_transformation({'type': 'dp', 'mech': 'Binary', 'e': 0.1, 'true': str(True), 'false': str(False)})
+    binary_transformation = compile_transformation({
+        'type': 'dp',
+        'mech': 'Binary',
+        'e': 0.1,
+        'true': str(True), 'false': str(False)
+    })
 
     flip_count = 0
     for value in [str(bool(random.randrange(0, 1))) for _ in range(1000)]:
@@ -62,7 +67,12 @@ def test_dp_binary():
 
 
 def test_dp_gaussian():
-    gaussian_transformation = compile_transformation({"type": "dp", "mech": "Gaussian", "e": 0.1, "d": 0.1})
+    gaussian_transformation = compile_transformation({
+        "type": "dp",
+        "mech": "Gaussian",
+        "e": 0.1,
+        "d": 0.1
+    })
 
     faker = Faker()
 
@@ -75,7 +85,12 @@ def test_dp_gaussian():
 @pytest.mark.skip("Needs to be discussed to better understand the usage of the exponential mechanism")
 def test_dp_exponential():
     candidates = [f"candidate {i}" for i in range(20)]
-    exponential_transformation = compile_transformation({"type": "dp", "mech": "Exponential", "candidates": candidates, "utility": [1 for _ in candidates]})
+    exponential_transformation = compile_transformation({
+        "type": "dp",
+        "mech": "Exponential",
+        "candidates": candidates,
+        "utility": [1 for _ in candidates]
+    })
 
     for value in [random.choice(candidates) for _ in range(100)]:
         transformed = exponential_transformation(str(value))
