@@ -84,8 +84,8 @@ class DataLeakagePreventionFileSystem(Loopback):
 
         if self.protect_write:
             _fd.buffer = (_fd.buffer[:offset].ljust(offset, '\x00'.encode('ascii'))
-                + data
-                + _fd.buffer[offset + len(data):])
+                        + data
+                        + _fd.buffer[offset + len(data):])
             data = self.__sanitize(data)
 
         os.lseek(fh, offset, 0)
