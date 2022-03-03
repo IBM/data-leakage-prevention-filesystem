@@ -4,7 +4,6 @@ dist: xenial
 python:
   - 3.8
   - 3.9
-  - 3.10.0
 
 install:
   - pip install -r ./requirements-dev.txt
