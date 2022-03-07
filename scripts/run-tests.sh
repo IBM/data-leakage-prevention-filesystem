@@ -1,11 +1,20 @@
 #!/bin/bash
 
 MODULE_NAME=dlpfs
-SLEEP_TIME=5
+SLEEP_TIME=10
 
-mkdir results
-rm *.log
-rm -r results/*
+function kill_process() {
+    kill %1
+    sleep $SLEEP_TIME
+}
+
+if [ ! -d results ]; then
+    mkdir results
+else
+    rm -fr results/*
+fi
+
+rm -f *.log
 
 echo "BENCHMARK FOR LOOPBACK"
 
@@ -34,9 +43,7 @@ done > results/write-loopback.dat
 
 echo "STOPPING LOOPBACK"
 
-ps aux | grep $MODULE_NAME | grep -v grep | awk '{print $2}' | xargs kill -SIGINT
-
-exit
+kill_process $MODULE_NAME
 
 for rule in $(ls -1 ./benchmark-rules); do
 
@@ -68,6 +75,6 @@ for rule in $(ls -1 ./benchmark-rules); do
 
         echo "STOPPING $MODULE_NAME $rule $guard_size"
 
-        ps aux | grep $MODULE_NAME | grep -v grep | awk '{print $2}' | xargs kill -SIGINT
+        kill_process $MODULE_NAME
     done
 done
