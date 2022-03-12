@@ -4,7 +4,7 @@ MODULE_NAME=dlpfs
 SLEEP_TIME=10
 
 function kill_process() {
-    kill %1
+    ps | grep python | awk '{print $1}' | xargs kill
     sleep $SLEEP_TIME
 }
 
