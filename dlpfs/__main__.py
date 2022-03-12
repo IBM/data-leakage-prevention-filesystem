@@ -13,7 +13,7 @@ def create_fs(args):
         print("Creating loopback FS")
         return Loopback(args.r)
     if fs_type == "dlpfs":
-        print("Creating ppfs FS")
+        print("Creating dlpfs FS")
         logging.info(f"Protecting {realpath(args.r)} with DataLeakagePreventionFileSystem")
         return DataLeakagePreventionFileSystem(args.r, args.s, use_re2=args.re2, guard_size=args.g, use_sub=args.sub)
 
