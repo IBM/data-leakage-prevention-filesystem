@@ -1,10 +1,14 @@
-# .coveragerc to control coverage.py
-
 [run]
-source = dlpfs/
+branch = True
+source = dlpfs
 command_line = -m pytest
 
 [report]
-show_missing = True
-skip_covered = True
-sort = Cover
+exclude_lines =
+    if self.debug:
+    pragma: no cover
+    raise NotImplementedError
+    if __name__ == .__main__.:
+ignore_errors = True
+omit =
+    tests/*
