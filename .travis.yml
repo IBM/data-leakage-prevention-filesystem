@@ -21,4 +21,5 @@ matrix:
     - flake8
     - mypy dlpfs tests
     - pytest --cov-report=xml --cov=dlpfs --cov-append
-
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
