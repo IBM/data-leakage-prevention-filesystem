@@ -12,7 +12,7 @@ install:
 script:
   - flake8
   - mypy dlpfs tests
-  - pytest
+  - pytest --cov-report=xml --cov=dlpfs --cov-append
 
 matrix:
   include:
