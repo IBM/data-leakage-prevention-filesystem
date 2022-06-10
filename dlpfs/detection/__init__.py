@@ -77,6 +77,7 @@ def build_rule(rule_spec: Dict[str, Any], use_re2: bool = True):
 
     if t == 'lookup':
         return LookUp(spec)
+
     if t == 'lookup2':
         if use_re2:
             return re2.compile(_build_regex(spec))
