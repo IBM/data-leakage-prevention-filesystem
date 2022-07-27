@@ -1,6 +1,6 @@
 flake8==4.0.1
 mypy==0.931
-notebook==6.4.10
+notebook==6.4.12
 pandas==1.4.1
 git+https://github.com/marcosimioni/faker
 pytest-cov
