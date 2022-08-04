@@ -7,6 +7,7 @@ name = "pypi"
 fusepy = "*"
 diffprivlib = "*"
 pyre2 = "*"
+faker = "*"
 
 [dev-packages]
 pipenv-setup = "*"
