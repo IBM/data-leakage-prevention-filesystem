@@ -8,6 +8,9 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
+with open(path.join(here, "requirements.txt"), encoding="utf-8") as f:
+    requirements = f.read().split()
+
 setup(
     name="dlpfs",
     version="0.1.0",
@@ -25,11 +28,7 @@ setup(
     ],
     packages=find_packages(exclude=["contrib", "docs", "tests", "scripts", "build"]),
     python_requires=">=3.8",
-    install_requires=[
-        "diffprivlib==0.5.1",
-        "fusepy==3.0.1",
-        "pyre2==0.3.6"
-    ],
+    install_requires=requirements,
     project_urls={
         "Bug Reports": "https://github.com/IBM/data-leakage-prevention-file-system/issues",
         "Source": "https://github.com/IBM/data-leakage-prevention-file-system",
