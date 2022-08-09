@@ -9,7 +9,8 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 with open(path.join(here, "requirements.txt"), encoding="utf-8") as f:
-    requirements = f.read().split()
+    requirements = [req.strip() for req in f.read().split() if len(req) and not req.strip().startswith("#")]
+
 
 setup(
     name="dlpfs",
