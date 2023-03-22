@@ -20,7 +20,7 @@ def create_fs(args):
     raise Exception(f"Unknown FS type: {fs_type}")
 
 
-if __name__ == "__main__":
+def build_argparser():
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", type=str, help="accepted values: loopback, dlpfs", required=True)
     parser.add_argument("-r", type=str, help="root", required=True)
@@ -32,10 +32,18 @@ if __name__ == "__main__":
     parser.add_argument("-g", type=int, help="guard size in bytes (required for dlpfs only)", default=256)
     parser.add_argument("-l", type=str, help="accepted values: CRITICAL,ERROR,WARNING,INFO,DEBUG", default="ERROR")
 
-    args = parser.parse_args()
+    return parser
+
+
+def main():
+    args = build_argparser().parse_args()
 
     logging.basicConfig(level=logging.getLevelName(args.l))
 
     fs = create_fs(args)
 
     fuse = FUSE(fs, args.m, foreground=True)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
