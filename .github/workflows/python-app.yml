@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python application
+name: Test DLPFS
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
     - name: Install ubuntu dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libre2-dev
+        sudo apt-get install -y libre2-dev libfuse-dev
     - name: Install dev-dependencies
       run: |
         python -m pip install --upgrade pip
