@@ -6,10 +6,10 @@ import logging
 
 import re
 
-# try:
-import re2
-# except ImportError:
-#     import re as re2
+try:
+    import re2
+except ImportError:
+    import re as re2
 
 
 def compile_policies(ruleSpecs, use_re2: bool):
